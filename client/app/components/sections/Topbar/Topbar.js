@@ -21,6 +21,7 @@ import Menu from '../../composites/Menu/Menu';
 import MenuMobile from '../../composites/MenuMobile/MenuMobile';
 import MenuPriority from '../../composites/MenuPriority/MenuPriority';
 import SearchBar from '../../composites/SearchBar/SearchBar';
+import FlashMessage from '../../composites/FlashMessage/FlashMessage';
 
 
 const LABEL_TYPE_MENU = 'menu';
@@ -293,6 +294,13 @@ class Topbar extends Component {
           customColor: marketplaceColor1,
         }) :
       null,
+      r(FlashMessage, {
+        notifications: {
+          error: 'Error message with  kjslkjsl fkjsldjf lskdjf lskjd flskdjf lskdjfl skdjfl skdjfl <a href="#link">link</a>',
+          warning: 'Warning message with <a href="#link">link</a>',
+          notice: 'Notice, did you see what we did there?',
+        },
+      }),
     ]);
   }
 }

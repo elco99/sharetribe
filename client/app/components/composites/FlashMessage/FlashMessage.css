@@ -1,0 +1,167 @@
+.errors {
+  position: fixed;
+  top: 0;
+  left: 50vw;
+  transform: translate3d(-50%, 0px, 0);
+/*  transform: translateX(-50%);*/
+  width: 80vw;
+  max-width: 1200px;
+
+  z-index: 11;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.error {
+  width: 100%;
+  display: flex;
+
+  background-color: #ed4f2e;
+  border-radius: 3px;
+  margin-bottom: 12px;
+
+  &:first-child {
+    border-radius: 0 0 3px 3px;
+  }
+}
+
+.message {
+  display: inline-block;
+  flex-basis: auto;
+  width: auto;
+  flex-grow: 1;
+  color: white;
+  font-size: 14px;
+  line-height: 22px;
+  padding: calc(12px + 1px) 24px;
+
+  & > a {
+    text-decoration: none;
+    color: white;
+    border-bottom: solid 1px white;
+    cursor: pointer;
+  }
+  & > a:hover {
+    border-bottom: solid 2px white;
+  }
+
+}
+
+.closeButton {
+  color: white;
+  font-size: 14px;
+  line-height: 22px;
+  flex-basis: 60px;
+  padding: calc(12px + 1px) 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  & g {
+    fill: #fff;
+  }
+}
+.closeButton:hover {
+  box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.2);
+}
+
+/* ReactCSSTransitionGroup styles for container */
+.cssTransitionGroup {
+  position: absolute;
+}
+.enterTop {
+  transform: translate3d(-50%, -130px, 0);
+}
+.enterTopActive {
+  transform: translate3d(-50%, 0px, 0);
+  transition: transform 300ms ease-in-out;
+}
+.leaveTop {
+  transform: translate3d(-50%, 0px, 0);
+}
+.leaveTopActive {
+  transform: translate3d(-50%, -130px, 0);
+  transition: transform 300ms ease-in-out;
+}
+
+/* Notices */
+.notices {
+  position: fixed;
+  top: 11px;
+  right: 12px;
+  width: 336px;
+
+  z-index: 10;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.notice {
+  width: 100%;
+  display: flex;
+
+  background-color: white;
+  border: solid 1px #e1e1e1;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 20px 0 rgba(0,0,0,0.2);
+}
+
+.noticeMessage {
+  display: inline-block;
+  flex-basis: auto;
+  width: auto;
+  flex-grow: 1;
+  color: #5e6977;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 18px 24px 20px 24px;
+
+  & > a {
+    text-decoration: none;
+    color: #5e6977;
+    border-bottom: solid 1px #5e6977;
+    cursor: pointer;
+  }
+  & > a:hover {
+    border-bottom: solid 2px #5e6977;
+  }
+
+}
+
+.closeIcon {
+  font-size: 14px;
+  line-height: 22px;
+  flex-basis: 60px;
+  padding: 14px;
+  cursor: pointer;
+
+  & g {
+    fill: #ccc;
+  }
+
+  &:hover {
+    color: #999;
+  }
+}
+
+/* ReactCSSTransitionGroup styles for container */
+.enterRight {
+  transform: translate3d(110%, 0, 0);
+}
+.enterRightActive {
+  transform: translate3d(0%, 0, 0);
+  transition: transform 300ms ease-in-out;
+}
+.leaveRight {
+  transform: translate3d(0%, 0, 0);
+}
+.leaveRightActive {
+  transform: translate3d(110%, 0, 0);
+  transition: transform 300ms ease-in-out;
+}
+
+
