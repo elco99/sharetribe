@@ -180,6 +180,16 @@ class Person < ActiveRecord::Base
     UUIDTools::UUID.parse_raw(Base64.urlsafe_decode64(self.id))
   end
 
+  def role
+    if self.is_admin?
+      :superAdmin
+    elsif self.is_marketplace_admin?
+      :admin
+    else
+      :user
+    end
+  end
+
   # Creates a new email
   def email_attributes=(attributes)
     ActiveSupport::Deprecation.warn(

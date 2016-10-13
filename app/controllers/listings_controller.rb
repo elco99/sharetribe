@@ -264,7 +264,12 @@ class ListingsController < ApplicationController
     listing_uuid = UUIDUtils.create
 
     if FeatureFlagHelper.feature_enabled?(:availability) && shape.present? && shape[:availability] == :booking
-      bookable_res = create_bookable(@current_community.uuid_object, listing_uuid, @current_user.uuid_object)
+      harmony_auth_data = {
+        marketplaceId: @current_community.uuid_object,
+        actorId: @current_user.uuid_object,
+        role: @current_user.role
+      }
+      bookable_res = create_bookable(@current_community.uuid_object, listing_uuid, @current_user.uuid_object, harmony_auth_data)
       unless bookable_res.success
         flash[:error] = t("listings.error.create_failed_to_connect_to_booking_service")
         return redirect_to new_listing_path
@@ -403,7 +408,13 @@ class ListingsController < ApplicationController
        shape[:availability] == :booking &&
        @listing.availability.to_sym != :booking
 
-      bookable_res = create_bookable(@current_community.uuid_object, @listing.uuid_object, @current_user.uuid_object)
+      harmony_auth_data = {
+        marketplaceId: @current_community.uuid_object,
+        actorId: @current_user.uuid_object,
+        role: @current_user.role
+      }
+
+      bookable_res = create_bookable(@current_community.uuid_object, @listing.uuid_object, @current_user.uuid_object, harmony_auth_data)
       unless bookable_res.success
         flash[:error] = t("listings.error.update_failed_to_connect_to_booking_service")
         return redirect_to edit_listing_path(@listing)
@@ -514,7 +525,7 @@ class ListingsController < ApplicationController
 
   private
 
-  def create_bookable(community_uuid, listing_uuid, author_uuid)
+  def create_bookable(community_uuid, listing_uuid, author_uuid, auth_data)
     res = HarmonyClient.post(
       :create_bookable,
       body: {
@@ -523,7 +534,8 @@ class ListingsController < ApplicationController
         authorId: author_uuid
       },
       opts: {
-        max_attempts: 3
+        max_attempts: 3,
+        auth_data: auth_data
       })
 
     if !res[:success] && res[:data][:status] == 409
