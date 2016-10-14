@@ -3,6 +3,7 @@ import r, { div } from 'r-dom';
 import Immutable from 'immutable';
 import styleVariables from '../../../assets/styles/variables';
 
+import Topbar from '../../sections/Topbar/Topbar';
 import ListingCard from '../../composites/ListingCard/ListingCard';
 import ListingCardPanel from '../../composites/ListingCardPanel/ListingCardPanel';
 
@@ -35,6 +36,10 @@ class SearchPage extends Component {
   render() {
     const { marketplace_color1: marketplaceColor1 } = { ...DEFAULT_CONTEXT, ...this.props.marketplace };
     return div({ className: css.searchPage }, [
+      r(Topbar, {
+        ...this.props.topbar,
+        routes: this.props.routes
+      }),
       r(ListingCardPanel,
         { className: css.listingContainer },
         this.listings.map((listing) =>

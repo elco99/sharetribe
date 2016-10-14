@@ -31,6 +31,7 @@ const mapStateToProps = function mapStateToProps(state) {
     searchPage: state.searchPage.set('listings', listings),
     marketplace: state.marketplace,
     routes: state.routes,
+    topbar: state.topbar,
   };
 };
 

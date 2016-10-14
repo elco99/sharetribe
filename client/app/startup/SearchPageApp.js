@@ -42,6 +42,13 @@ export default (props) => {
   const routes = subset([
     'listing',
     'person',
+    'new_listing',
+    'person_inbox',
+    'person_settings',
+    'logout',
+    'admin',
+    'login',
+    'sign_up',
   ], { locale });
 
   const bootstrappedData = TransitImmutableConverter.fromJSON(props.data);
@@ -56,7 +63,7 @@ export default (props) => {
     currentPage: rawListings.map((l) => l.get(':id')),
   });
 
-  const combinedProps = Object.assign({}, { marketplace: props.marketplace }, { searchPage, routes, listings, profiles });
+  const combinedProps = Object.assign({}, { marketplace: props.marketplace, topbar: props.topbar }, { searchPage, routes, listings, profiles });
   const combinedReducer = combineReducers(reducers);
 
   const store = applyMiddleware(middleware)(createStore)(combinedReducer, combinedProps);
